@@ -1,11 +1,6 @@
-
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-
-
-
-
+import { AuthenticationService } from '../service/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -14,23 +9,28 @@ import { Router } from '@angular/router';
 })
 export class LoginComponent implements OnInit {
 
-  registerForm: FormGroup;
-  submitted = false;
-  msg:string=""
+  username = 'javainuse'
+  password = ''
+  invalidLogin = false
 
- 
+  constructor(private router: Router,
+    private loginservice: AuthenticationService) { }
 
-   ngOnInit() {
-    
+  ngOnInit() {
   }
 
-  
-  myFunction()
-  {
-    alert("oyeeeeeee!!!!!!!!!!!!!")
-  }
+  checkLogin() {
+    if (this.loginservice.authenticate(this.username, this.password)
+    ) {
+      
+     // this.router.navigate(['/register'])
+      this.invalidLogin = false;
+      alert("success!!!")
+    } else{
+          this.invalidLogin = true;
+          alert("failed!!!")
+    }
+    }
 
 
-    
-    
 }

@@ -5,9 +5,10 @@
             <a class="navbar-brand" href="#">MyFirst App</a>
           </div>
           <ul class="nav navbar-nav">
-            <li><a routerLink="/">Home</a></li>
-            <li><a routerLink="/login">login</a></li>
-            <li><a routerLink="/register">register</a></li>
+            <li><a *ngIf="!loginService.isUserLoggedIn()" routerLink="/">Home</a></li>
+            <li><a *ngIf="!loginService.isUserLoggedIn()" routerLink="/login">login</a></li>
+            <li><a *ngIf="loginService.isUserLoggedIn()" routerLink="/logout">logout</a></li>
+            <li><a *ngIf="!loginService.isUserLoggedIn()" routerLink="/register">register</a></li>
             <li><a href="#">About us</a></li>
           </ul>
         </div>
